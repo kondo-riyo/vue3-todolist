@@ -1,7 +1,8 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
+    <div>{{ msg }}</div>
+    <button @click="changeMsg">Change</button>
+    <!-- <p>
       For a guide and recipes on how to configure / customize this project,<br>
       check out the
       <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
@@ -26,15 +27,28 @@
       <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
       <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
       <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
+    </ul> -->
   </div>
 </template>
 
 <script>
+import { ref } from 'vue';
 export default {
   name: 'HelloWorld',
-  props: {
-    msg: String
+  // props: {
+  //   msg: String
+  // },
+  setup() {
+    const msg = ref("hello")
+
+    const changeMsg = () => {
+      msg.value = "world"
+    }
+
+    return{
+      msg,
+      changeMsg
+    }
   }
 }
 </script>

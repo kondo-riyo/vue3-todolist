@@ -1,26 +1,51 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app">
+    <h1>Todoリスト</h1>
+    <input v-model="data.todo"><br>
+    <button @click="addTodo">追加</button>
+    <ul>
+      <li v-for="(todo, index) in data.todos" :key="index">
+        {{ todo }} 
+        <button @click="removeTodo(index)">×</button>
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+  import { reactive } from 'vue';
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
+  // data() {
+  //   return {
+  //     todo: '',
+  //     todos:[]
+  //   }
+  // },
+  // methods: {
+  //   addTodo() {
+  //     this.todos.push(this.todo)
+  //     this.todo = ''
+  //   },
+  //   removeTodo(index) {
+  //     this.todos.splice(index, 1)
+  //   }
+  // }
+  setup() {
+    const data = reactive({
+      todo: '',
+      todos:[]
+    });
+    const addTodo = () => {
+      data.todos.push(data.todo)
+      data.todo = ''
+    };
+    const removeTodo = index => {
+      data.todos.splice(index, 1)
+    };
+    return { data , addTodo, removeTodo };
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>

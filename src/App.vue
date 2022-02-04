@@ -13,7 +13,9 @@
 </template>
 
 <script>
-  import { reactive } from 'vue';
+  // import { reactive } from 'vue';
+  import { ref } from 'vue';
+  
 export default {
   // data() {
   //   return {
@@ -31,18 +33,33 @@ export default {
   //   }
   // }
   setup() {
-    const data = reactive({
+    //reactiveの場合----------------------------
+    // let data = reactive({
+    //   todo: '',
+    //   todos:[]
+    // });
+    // const addTodo = () => {
+    //   data.todos.push(data.todo)
+    //   data.todo = ''
+    // };
+    // const removeTodo = index => {
+    //   data.todos.splice(index, 1)
+    // };
+    // return { data , addTodo, removeTodo };
+
+    //refの場合---------------------------------
+    let data = ref({
       todo: '',
       todos:[]
     });
     const addTodo = () => {
-      data.todos.push(data.todo)
-      data.todo = ''
+      data.value.todos.push(data.value.todo)
+      data.value.todo = ''
     };
     const removeTodo = index => {
-      data.todos.splice(index, 1)
+      data.value.todos.splice(index, 1)
     };
-    return { data , addTodo, removeTodo };
+    return { data, addTodo, removeTodo };
   }
 }
 </script>
